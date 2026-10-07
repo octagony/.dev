@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
-import { Google_Sans, Geist } from "next/font/google";
+import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
+import Header from "@/components/layout/Header";
 
 const googleSans = Google_Sans({
 	variable: "--font-google-sans",
@@ -24,9 +23,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 	return (
 		<html
 			lang="en"
-			className={cn("h-full", "antialiased", googleSans.variable, googleMono.variable, "font-sans", geist.variable)}
+			className={cn(
+				"h-full",
+				"antialiased",
+				googleSans.variable,
+				googleMono.variable,
+				"font-sans",
+			)}
 		>
-			<body className="min-h-full flex flex-col">{children}</body>
+			<body className="min-h-full flex flex-col">
+				<Header />
+				{children}
+			</body>
 		</html>
 	);
 }
