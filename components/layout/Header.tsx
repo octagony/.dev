@@ -3,11 +3,12 @@ import {
 	Sheet,
 	SheetClose,
 	SheetContent,
-	SheetTitle,
 	SheetTrigger,
 } from "../ui/sheet";
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { ThemeSwitcher } from "../ui/theme-switcher";
+import { ThemeToggler } from "../ThemeToggler";
 
 export default function Header() {
 	return (
@@ -24,13 +25,14 @@ export default function Header() {
 						width={36}
 						height={36}
 					/>
+					<ThemeToggler />
 					{/*MOBILE MENU*/}
-					<div className="md:hidden">
+					<div className="md:hidden max-w-8 max-h-8">
 						<Sheet>
 							<SheetTrigger>
-								<Menu />
+								<Menu size={32} />
 							</SheetTrigger>
-							<SheetContent className=" p-2 pt-20 md:flex flex-col gap-16 text-center">
+							<SheetContent className="p-2 pt-20 md:flex flex-col gap-16 text-center">
 								<SheetClose>
 									<Link href="/" className="text-5xl">
 										Home

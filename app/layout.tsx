@@ -3,6 +3,7 @@ import { Google_Sans } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import Header from "@/components/layout/Header";
+import { ThemeProvider } from "next-themes";
 
 const googleSans = Google_Sans({
 	variable: "--font-google-sans",
@@ -30,10 +31,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 				googleMono.variable,
 				"font-sans",
 			)}
+			suppressHydrationWarning
 		>
 			<body className="min-h-full flex flex-col">
-				<Header />
-				{children}
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<Header />
+					{children}
+				</ThemeProvider>
 			</body>
 		</html>
 	);
