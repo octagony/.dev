@@ -3,7 +3,7 @@ import { IContainerComponentProps } from "@components/layout/Container/IContaine
 
 export function Container({ children, className, ...props }: IContainerComponentProps) {
 	return (
-		<div
+		<section
 			className={cn(
 				"mx-auto w-full max-w-2xl md:max-w-3xl px-4 sm:px-6 lg:px-8",
 				className
@@ -11,6 +11,6 @@ export function Container({ children, className, ...props }: IContainerComponent
 			{...props}
 		>
 			{children}
-		</div>
+		</section>
 	);
 }

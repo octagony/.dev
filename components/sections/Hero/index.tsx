@@ -6,6 +6,7 @@ import Link from "next/link";
 import { cn } from "cn";
 import { Container } from "@components/layout/Container";
 import { animationFadeInUp } from "@lib/utils";
+import Image from "next/image";
 
 export function Hero() {
 	return (

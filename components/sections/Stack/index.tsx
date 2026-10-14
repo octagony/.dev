@@ -3,12 +3,13 @@
 import { Container } from "@components/layout/Container";
 import { Badge } from "@components/ui/badge";
 import { animationFadeInUp, stackBlock } from "@lib/utils";
+import { Undo } from "lucide-react";
 import { motion } from 'motion/react';
 import Image from "next/image";
 
 export function Stack() {
 	return (
-		<Container className="pt-4 pb-10 md:pt-8 md:pb-20 border-l border-r border-t">
+		<Container className="pt-4 pb-4 md:pt-8 md:pb-8 border-l border-r border-t">
 			<motion.div
 				initial="hidden"
 				animate="visible"
@@ -26,6 +27,11 @@ export function Stack() {
 				>
 					[Stack]
 				</motion.p>
+				<motion.p variants={animationFadeInUp}
+					className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-2xl relative mb-2"
+				>
+					Take a look at what i use in my development
+				</motion.p>
 				<motion.div
 					initial="hidden"
 					animate="visible"
@@ -41,16 +47,20 @@ export function Stack() {
 					{stackBlock.map((item, index) =>
 					(
 						<div
-							className="grid items-start gap-y-2 border-b border-line border-line py-4 last:border-none md:grid-cols-2 "
+							className="grid items-start gap-y-2 border-b border-line border-line py-4 last:border-none md:grid-cols-2 mb-0"
 							key={index}
 						>
 							<div>
-								<span className="mr-1.5 font-mono text-muted-foreground select-none">
+								<motion.span
+									variants={animationFadeInUp} className="mr-1.5 font-mono text-muted-foreground select-none">
 									0{index + 1}
-								</span>
-								{item.name}
+								</motion.span>
+								<motion.span
+									variants={animationFadeInUp} className="font-mono text-muted-foreground select-none">
+									{item.name}
+								</motion.span>
 							</div>
-							<ul aria-labelledby={`stack-${item.name}`} className="flex flex-wrap gap-1.5 md:gap-4 px-4">
+							<motion.ul variants={animationFadeInUp} aria-labelledby={`stack-${item.name}`} className="flex flex-wrap gap-1.5 md:gap-4 px-4">
 								{item.stack.map((tech, i) => (
 									<li key={i} className="flex">
 										<Badge variant="outline" className="py-3 md:py-4">
@@ -65,7 +75,7 @@ export function Stack() {
 										</Badge>
 									</li>
 								))}
-							</ul>
+							</motion.ul>
 						</div>
 					)
 					)}
