@@ -1,15 +1,14 @@
-import { Container } from "@components/layout/Container";
-
+import { About } from "@components/sections/About";
+import { Hero } from "@components/sections/Hero";
+import { Stack } from "@components/sections/Stack";
 
 export default function Home() {
 	return (
-		<Container className="py-20">
-			<h1 className="text-2xl font-semibold tracking-tight text-foreground">
-				Welcome
-			</h1>
-			<p className="mt-4 text-zinc-400 leading-relaxed">
-				Test text
-			</p>
-		</Container>
+		<main className="flex min-h-screen flex-col">
+			<Hero />
+			<About />
+			<Stack />
+
+		</main>
 	);
 }
