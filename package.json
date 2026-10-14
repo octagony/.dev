@@ -2,8 +2,10 @@
   "name": "portfolio",
   "version": "0.1.0",
   "private": true,
-    "imports": {
-    "@/*": "./src/*"
+  "imports": {
+    "@app/*": "./app/*",
+    "@components/*": "./components/*",
+    "@lib/*": "./lib/*"
   },
   "scripts": {
     "dev": "next dev",

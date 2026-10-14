@@ -1,5 +1,15 @@
+import { Container } from "@components/layout/Container";
+
+
 export default function Home() {
 	return (
-		<div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black"></div>
+		<Container className="py-20">
+			<h1 className="text-2xl font-semibold tracking-tight text-foreground">
+				Welcome
+			</h1>
+			<p className="mt-4 text-zinc-400 leading-relaxed">
+				Test text
+			</p>
+		</Container>
 	);
 }
