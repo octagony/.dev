@@ -10,7 +10,7 @@ import Image from 'next/image';
 
 export function Hero() {
     return (
-        <Container className="pt-20 pb-8 md:pt-32 md:pb-8 border-l border-r">
+        <Container className="pt-22 pb-8 md:pb-8 border-l border-r">
             <motion.div
                 initial="hidden"
                 animate="visible"

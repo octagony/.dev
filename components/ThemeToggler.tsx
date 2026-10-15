@@ -1,4 +1,4 @@
-import {ThemeSwitcher} from '@components/ui/theme-switcher';
+import { ThemeSwitcher } from '@components/ui/theme-switcher';
 
 export function ThemeToggler() {
     return (
