@@ -4,7 +4,8 @@ import './globals.css';
 import { cn } from '@lib/utils';
 import { ThemeProvider } from 'next-themes';
 import { Header } from '@components/layout/Header';
-import { Footer } from "@components/layout/Footer";
+import { Footer } from '@components/layout/Footer';
+import { Suspense } from 'react';
 
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jet-brains-mono',
@@ -37,9 +38,11 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Header />
-          <main>{children}</main>
-          <Footer />
+          <Suspense>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

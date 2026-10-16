@@ -1,8 +1,8 @@
-import { GithubIcon } from "@components/ui/Icon/GithubIcon";
+import { GithubIcon } from '@components/ui/Icon/GithubIcon';
 import { IProjectBlock, IStackBlock } from './interfaces/utility.interface';
-import { LinkedinIcon } from "@components/ui/Icon/LinkedinIcon";
-import { TelegramIcon } from "@components/ui/Icon/TelegramIcon";
-import { MailIcon } from "@components/ui/Icon/MailIcon";
+import { LinkedinIcon } from '@components/ui/Icon/LinkedinIcon';
+import { TelegramIcon } from '@components/ui/Icon/TelegramIcon';
+import { MailIcon } from '@components/ui/Icon/MailIcon';
 
 export { cn } from 'cn';
 
@@ -21,51 +21,51 @@ export const animationFadeInUp = {
 
 export const fadeUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
-  }
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
 };
 
 // DOT COLORS
 export const DOT_COLOR = {
   light: {
-    default: "rgba(0, 0, 0, 0.08)",
-    active: "rgba(0, 0, 0, 0.16)",
+    default: 'rgba(0, 0, 0, 0.08)',
+    active: 'rgba(0, 0, 0, 0.16)',
   },
   dark: {
-    default: "rgba(255, 255, 255, 0.06)",
-    active: "rgba(255, 255, 255, 0.12)",
+    default: 'rgba(255, 255, 255, 0.06)',
+    active: 'rgba(255, 255, 255, 0.12)',
   },
-} as const
+} as const;
 
 // SOCIAL LINKS
 export const socialLinks = [
-	{
-		name: "GitHub",
-		href: "https://github.com/octagony",
-		description: "Check out my code",
-    icon: GithubIcon
-	},
-	{
-		name: "LinkedIn",
-		href: "https://linkedin.com/in/mihail-rutskiy-7a309323a",
-		description: "Connect professionally",
-    icon: LinkedinIcon
-	},
-	{
-		name: "Telegram",
-		href: "https://t.me/moctagony",
-		description: "Send direct message",
-    icon: TelegramIcon
-	},
-	{
-		name: "Email",
-		href: "mailto:mrkwork@yandex.by",
-		description: "Get in touch directly",
-    icon: MailIcon
-	}
+  {
+    name: 'GitHub',
+    href: 'https://github.com/octagony',
+    description: 'Check out my code',
+    icon: GithubIcon,
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://linkedin.com/in/mihail-rutskiy-7a309323a',
+    description: 'Connect professionally',
+    icon: LinkedinIcon,
+  },
+  {
+    name: 'Telegram',
+    href: 'https://t.me/moctagony',
+    description: 'Send direct message',
+    icon: TelegramIcon,
+  },
+  {
+    name: 'Email',
+    href: 'mailto:mrkwork@yandex.by',
+    description: 'Get in touch directly',
+    icon: MailIcon,
+  },
 ];
 
 // STACK
@@ -236,6 +236,6 @@ export const projectBlock: IProjectBlock[] = [
     title: 'Kitabox',
     descriptionShort: 'Create a temporary email address for receiving emails',
     link: '/projects/',
-    image: ''
-  }
+    image: '',
+  },
 ];

@@ -1,7 +1,7 @@
 'use client';
 
 import { Container } from '@components/layout/Container';
-import { SectionHeader } from "@components/layout/SectionHeader";
+import { SectionHeader } from '@components/layout/SectionHeader';
 import { animationFadeInUp } from '@lib/utils';
 import { motion } from 'motion/react';
 
@@ -21,7 +21,7 @@ export function About() {
         }}
         className="space-y-4"
       >
-        <SectionHeader text="About me"/>
+        <SectionHeader text="About me" />
         <motion.p
           variants={animationFadeInUp}
           className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-2xl"

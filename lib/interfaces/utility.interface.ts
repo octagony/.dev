@@ -12,16 +12,16 @@ export interface ITechnology {
 //PROJECT INTERFACES
 
 export interface IProjectBlock {
-  id: number,
-  title: string,
-  descriptionShort: string,
-  image: string,
-  link: string,
+  id: number;
+  title: string;
+  descriptionShort: string;
+  image: string;
+  link: string;
 }
 
 export interface IProjectPage extends IProjectBlock {
-  stack: ITechnology[],
-  descriptionFull: string,
-  githubLink: string,
-  projectLink: string,
+  stack: ITechnology[];
+  descriptionFull: string;
+  githubLink: string;
+  projectLink: string;
 }

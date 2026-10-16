@@ -1,7 +1,7 @@
 'use client';
 
 import { Container } from '@components/layout/Container';
-import { SectionHeader } from "@components/layout/SectionHeader";
+import { SectionHeader } from '@components/layout/SectionHeader';
 import { Badge } from '@components/ui/badge';
 import { animationFadeInUp, stackBlock } from '@lib/utils';
 import { motion } from 'motion/react';
@@ -23,7 +23,7 @@ export function Stack() {
         }}
         className="space-y-4"
       >
-        <SectionHeader text="Stack"/>
+        <SectionHeader text="Stack" />
         <motion.p
           variants={animationFadeInUp}
           className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-2xl relative mb-2"

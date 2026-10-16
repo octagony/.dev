@@ -1,4 +1,4 @@
-export function Icon({ as }: { as: () => React.JSX.Element; }) {
-  let Component = as;
+export function Icon({ as }: { as: () => React.JSX.Element }) {
+  const Component = as;
   return <Component />;
 }

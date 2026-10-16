@@ -12,6 +12,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "lint:fix": "eslint --fix",
     "format": "npx prettier --write **/*.{ts,tsx,json,scss}"
   },
   "dependencies": {
