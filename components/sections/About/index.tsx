@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@components/layout/Container';
+import { SectionHeader } from "@components/layout/SectionHeader";
 import { animationFadeInUp } from '@lib/utils';
 import { Undo } from 'lucide-react';
 import { motion } from 'motion/react';
@@ -21,19 +22,7 @@ export function About() {
         }}
         className="space-y-4"
       >
-        <motion.p
-          variants={animationFadeInUp}
-          className="text-md md:text-lg text-foreground leading-relaxed max-w-2xl relative"
-        >
-          [About me]
-          <span className="absolute top-[-20] left-28 font-handwriting text-muted-foreground">
-            <span className="absolute top-1 md:top-1 md:left-2">Shortly</span>
-            <Undo
-              className="absolute top-5 -left-4 md:-left-1.5 rotate-180 scale-x-[-1]"
-              size={18}
-            />
-          </span>
-        </motion.p>
+        <SectionHeader text="About me"/>
         <motion.p
           variants={animationFadeInUp}
           className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-2xl"

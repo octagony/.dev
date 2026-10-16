@@ -5,12 +5,23 @@ import { ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import { cn } from 'cn';
 import { Container } from '@components/layout/Container';
-import { animationFadeInUp } from '@lib/utils';
-import Image from 'next/image';
+import { animationFadeInUp} from '@lib/utils';
+import Image from "next/image";
 
 export function Hero() {
   return (
-    <Container className="pt-22 pb-8 md:pb-8 border-l border-r">
+    <Container className="pt-22 pb-8 md:pb-8 border-l border-r relative">
+      <Image
+        src="/background_section_2.jpg"
+        alt=""
+        fill
+        priority
+        className="object-cover -z-10"
+        quality={90}
+      />
+
+      <div className="absolute inset-0 -z-10 bg-linear-to-b from-background/10 via-background/60 to-background"/>
+
       <motion.div
         initial="hidden"
         animate="visible"

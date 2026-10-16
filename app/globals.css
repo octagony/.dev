@@ -103,6 +103,8 @@
 	--scrollbar-thumb: #d4d4d8; 
   --scrollbar-thumb-hover: #a1a1aa;
   --scrollbar-track: transparent;
+	--dot-grid-base: #ffffff;    
+  --dot-grid-active: #ffffff;  
 }
 
 @keyframes wiggle {
@@ -158,6 +160,8 @@
 	--scrollbar-thumb: #3f3f46; 
   --scrollbar-thumb-hover: #52525b; 
   --scrollbar-track: transparent;
+	--dot-grid-base: #09090b;
+  --dot-grid-active: #09090b;
 }
 
 @utility font-handwriting {
