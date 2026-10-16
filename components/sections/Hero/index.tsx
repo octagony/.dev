@@ -5,17 +5,21 @@ import { ArrowRight } from 'lucide-react';
 import { cn } from 'cn';
 import { Container } from '@components/layout/Container';
 import { animationFadeInUp } from '@lib/utils';
-import Image from 'next/image';
 
 export function Hero() {
   return (
     <Container className="pt-22 pb-8 md:pb-8 border-l border-r relative">
       <motion.div
         initial={{ filter: 'blur(20px)', opacity: 0 }}
-        animate={{ filter: 'blur(0px)', opacity: 1 }}
-        transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] as const }}
+        transition={{
+          duration: 1.4,
+          ease: [0.22, 1, 0.36, 1] as const,
+        }}
         className="absolute inset-0 -z-20 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: "url('/background_section_2.jpg')" }}
+        style={{
+          backgroundImage: "url('/background_section_2.jpg')",
+          willChange: 'filter, opacity',
+        }}
       />
 
       <div className="absolute inset-0 -z-10 bg-linear-to-b from-background/10 via-background/60 to-background" />
