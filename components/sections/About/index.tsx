@@ -3,7 +3,6 @@
 import { Container } from '@components/layout/Container';
 import { SectionHeader } from "@components/layout/SectionHeader";
 import { animationFadeInUp } from '@lib/utils';
-import { Undo } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export function About() {

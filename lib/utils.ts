@@ -57,7 +57,7 @@ export const socialLinks = [
 	{
 		name: "Telegram",
 		href: "https://t.me/moctagony",
-		description: "Keeps in touch, always",
+		description: "Send direct message",
     icon: TelegramIcon
 	},
 	{

@@ -15,7 +15,7 @@ export function Contact() {
 	  const theme = resolvedTheme === "dark" ? "dark" : "light";
 
 	return (
-		<Container className="pt-4 pb-4 md:pt-8 md:pb-8 border-l border-r border-t relative">
+		<Container className="pt-4 pb-4 md:pt-8 md:pb-8 border-l border-r border-t relative" id="contact">
 			<div className="absolute inset-0 dark:opacity-40">
 				<DotGridSpotlight dotColor={DOT_COLOR[theme]?.default}
         activeDotColor={DOT_COLOR[theme]?.active} />

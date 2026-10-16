@@ -51,7 +51,7 @@ export function Hero() {
         >
           From idea to production
           <br className="hidden md:block" />
-          <div className="text-muted-foreground">let’s go through this journey together</div>
+          <div className="text-muted-foreground mt-2">let’s go through this journey together</div>
         </motion.h1>
 
         <motion.p
@@ -63,24 +63,25 @@ export function Hero() {
         </motion.p>
 
         <motion.div variants={animationFadeInUp} className="flex flex-wrap gap-4 pt-2">
-          <Link
-            href="#projects"
+          <a
+            href="#contact"
             className={cn(
               'group inline-flex items-center justify-center gap-2 rounded-xl bg-foreground px-6 py-3 text-sm font-medium text-background transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]',
             )}
           >
             Contact Me
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </Link>
+          </a>
 
-          <Link
+          {/* TODO: IMPLEMENT PROJECTS */}
+          {/* <Link
             href="#contact"
             className={cn(
               'inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-muted/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-muted hover:border-border/80 hover:scale-[1.02] active:scale-[0.98]',
             )}
           >
             View Projects
-          </Link>
+          </Link> */}
         </motion.div>
       </motion.div>
     </Container>
