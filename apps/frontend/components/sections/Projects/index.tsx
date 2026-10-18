@@ -1,32 +1,85 @@
-'use client';
+"use client";
 
-import { Container } from '@components/layout/Container';
-import { Button } from '@components/ui/button';
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card';
-import { animationFadeInUp } from '@lib/utils';
-import { motion } from 'motion/react';
+import { motion } from "motion/react";
+import { useProjects } from "@lib/hooks/useProject";
+import { Container } from "@components/layout/Container";
+import { cn } from "cn";
+import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
+import { Button } from "@components/ui/button";
+import Image from "next/image";
+import { GithubIcon } from "@components/ui/Icon/GithubIcon";
+import Link from "next/link";
+import { SectionHeader } from "@components/layout/SectionHeader";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+  }
+};
 
 export function Projects() {
+  const { projects, isLoading } = useProjects();
+
+  if (isLoading) {
+    return (
+      <Container className="pt-4 pb-4 md:pt-8 md:pb-8 border-l border-r border-t">
+        <div className="text-center text-muted-foreground font-mono text-sm">
+          Loading projects...
+        </div>
+      </Container>
+    );
+  }
+
+
   return (
-    <Container className="pt-4 pb-10 md:pt-8 md:pb-20 border-l border-r border-t">
-      <motion.p
-        variants={animationFadeInUp}
-        className="text-md md:text-lg text-foreground leading-relaxed max-w-2xl relative"
-      >
-        [Projects]
-      </motion.p>
-      <Card className="relative mx-auto w-full max-w-sm pt-0">
-        <div className="absolute inset-0 z-30 aspect-video bg-black/35" />
-        <CardHeader>
-          <CardTitle>Design systems meetup</CardTitle>
-          <CardDescription>
-            A practical talk on component APIs, accessibility, and shipping faster.
-          </CardDescription>
-        </CardHeader>
-        <CardFooter>
-          <Button className="w-full">View Event</Button>
-        </CardFooter>
-      </Card>
+    <Container className="pt-4 pb-4 md:pt-8 md:pb-8 border-l border-r border-t">
+      <SectionHeader text="Projects" />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+        {projects.map((project, index) => (
+          <motion.div
+            key={project.id}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            transition={{ delay: index * 0.1 }}
+            className={cn(
+              "group w-full relative overflow-hidden",
+              "transition-all duration-300",
+              "hover:scale-[1.02]",
+              "active:scale-[0.98] cursor-pointerhover:bg-muted/60"
+            )}
+          >
+            <Card className="relative mx-auto w-full max-w-sm pt-0" key={project.id}>
+              <div className="relative aspect-video overflow-hidden rounded-t-xl">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 z-10 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
+              </div>
+              <CardHeader>
+                <CardTitle>{project.title}</CardTitle>
+                <CardDescription>
+                  {project.descriptionShort}
+                </CardDescription>
+              </CardHeader>
+              <CardFooter>
+                <Button className="cursor-pointer w-full">
+                  View project
+                </Button>
+              </CardFooter>
+            </Card>
+          </motion.div>
+        ))}
+      </div>
     </Container>
   );
 }

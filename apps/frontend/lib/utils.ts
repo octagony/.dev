@@ -6,6 +6,9 @@ import { MailIcon } from '@components/ui/Icon/MailIcon';
 
 export { cn } from 'cn';
 
+//PUBLIC API
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
+
 //ANIMATION
 export const animationFadeInUp = {
   hidden: {
