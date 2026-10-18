@@ -1,0 +1,139 @@
+import { PrismaService } from "@/prisma/prisma.service.js";
+import { Injectable, NotFoundException } from '@nestjs/common';
+import { CreateProjectDTO } from "@/project/dto/create-project.dto.js";
+import { IProjectBlock, IProjectPage } from "@/types/IProject.interface.js";
+import { UpdateProjectDTO } from "@/project/dto/update-project.dto.js";
+
+@Injectable()
+export class ProjectService {
+	constructor(private readonly prisma: PrismaService){}
+
+	  async create(createProjectDto: CreateProjectDTO): Promise<IProjectPage> {
+    const { stack, ...projectData } = createProjectDto;
+
+    const project = await this.prisma.project.create({
+      data: {
+        ...projectData,
+        stack: {
+          connectOrCreate: stack.map((tech) => ({
+            where: { title: tech.title },
+            create: {
+              title: tech.title,
+              icon: tech.icon,
+            },
+          })),
+        },
+      },
+      include: {
+        stack: true,
+      },
+    });
+
+    return this.mapToIProjectPage(project);
+  }
+
+  async findAll(): Promise<IProjectBlock[]> {
+      const projects = await this.prisma.project.findMany({
+        include: {
+          stack: true,
+        },
+        orderBy: {
+          createdAt: 'desc'
+        }
+      });
+
+      return projects.map(this.mapToIProjectBlock);
+  }
+
+  async findOne(id: number): Promise<IProjectPage> {
+    const project = await this.prisma.project.findUnique({
+      where: {id},
+      include: {
+        stack: true,
+      }
+    })
+
+    if (!project) {
+      throw new NotFoundException(`Project with ID ${id} not found`);
+    }
+
+    return this.mapToIProjectPage(project);
+  }
+
+  async update(id: number, updateProjectDto: UpdateProjectDTO): Promise<IProjectPage> {
+    const { stack, ...projectData } = updateProjectDto;
+
+    const existingProject = await this.prisma.project.findUnique({
+      where: { id },
+    });
+
+    if (!existingProject) {
+      throw new NotFoundException(`Project with ID ${id} not found`);
+    }
+
+    const project = await this.prisma.project.update({
+      where: { id },
+      data: {
+        ...projectData,
+        stack: stack
+          ? {
+              set: [],
+              connectOrCreate: stack.map((tech) => ({
+                where: { title: tech.title },
+                create: {
+                  title: tech.title,
+                  icon: tech.icon,
+                },
+              })),
+            }
+          : undefined,
+      },
+      include: {
+        stack: true,
+      },
+    });
+
+    return this.mapToIProjectPage(project);
+  }
+
+  async remove(id: number): Promise<void> {
+    const existingProject = await this.prisma.project.findUnique({
+      where: { id },
+    });
+
+    if (!existingProject) {
+      throw new NotFoundException(`Project with ID ${id} not found`);
+    }
+
+    await this.prisma.project.delete({
+      where: { id },
+    });
+  }
+
+   private mapToIProjectBlock(project: any): IProjectBlock {
+    return {
+      id: project.id,
+      title: project.title,
+      descriptionShort: project.descriptionShort,
+      image: project.image,
+      link: project.link,
+    };
+  }
+
+	 private mapToIProjectPage(project: any): IProjectPage {
+    return {
+      id: project.id,
+      title: project.title,
+      descriptionShort: project.descriptionShort,
+      descriptionFull: project.descriptionFull,
+      image: project.image,
+      link: project.link,
+      projectLink: project.projectLink,
+      githubLink: project.githubLink,
+      stack: project.stack.map((tech: any) => ({
+        title: tech.title,
+        icon: tech.icon,
+      })),
+    };
+  }
+}
