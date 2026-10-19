@@ -7,9 +7,12 @@ import { LogOut, Plus, Loader2 } from "lucide-react";
 import { cn } from "@lib/utils";
 import { Container } from "@components/layout/Container";
 import { ProjectsList } from "@components/admin/ProjectList";
+import { deleteProject } from "@lib/admin/actions";
+import { useProjects } from "@lib/hooks/useProject";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
+  const { projects, isLoading, mutate } = useProjects();
   const router = useRouter();
 
   useEffect(() => {
@@ -29,6 +32,21 @@ export default function AdminDashboard() {
   if (!session) {
     return null;
   }
+
+  const handleDelete = async (projectId: number) => {
+    try {
+      const result = await deleteProject(projectId);
+
+      if (result.success) {
+        mutate((currentProjects) =>
+          currentProjects?.filter((p) => p.id !== projectId),
+          false
+        );
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <Container className="py-20 md:py-32">
@@ -64,7 +82,7 @@ export default function AdminDashboard() {
         </button>
       </div>
 
-      <ProjectsList />
+      <ProjectsList projects={projects} isLoading={isLoading} deleteProject={handleDelete} />
     </Container>
   );
 }
