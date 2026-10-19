@@ -16,7 +16,7 @@ export const handler = NextAuth({
         ) {
           return {
             id: "1",
-            email: credentials?.email,
+            email: credentials?.email as string,
             name: "Admin",
           };
         }
@@ -47,4 +47,4 @@ export const handler = NextAuth({
   },
 });
 
-export { handler as GET, handler as POST }
+export { handler as GET, handler as POST };

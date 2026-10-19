@@ -14,7 +14,7 @@ if (databaseUrl?.startsWith('libsql://')) {
   });
   
   prismaOptions = { adapter };
-} 
+}
 
 const prisma = new PrismaClient(prismaOptions);
 
