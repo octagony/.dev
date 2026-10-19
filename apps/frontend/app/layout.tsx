@@ -6,6 +6,7 @@ import { ThemeProvider } from 'next-themes';
 import { Header } from '@components/layout/Header';
 import { Footer } from '@components/layout/Footer';
 import { Suspense } from 'react';
+import { NextAuthSessionProvider } from "@lib/providers/SessionProvider";
 
 const jetBrainsMono = JetBrains_Mono({
   variable: '--font-jet-brains-mono',
@@ -32,18 +33,20 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
           caveatMono.variable,
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Suspense>
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </Suspense>
-        </ThemeProvider>
+        <NextAuthSessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem={false}
+            disableTransitionOnChange
+          >
+            <Suspense>
+              <Header />
+              <main>{children}</main>
+              <Footer />
+            </Suspense>
+          </ThemeProvider>
+        </NextAuthSessionProvider>
       </body>
     </html>
   );
