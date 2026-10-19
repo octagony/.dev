@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
 export const handler = NextAuth({
+  secret: process.env.NEXTAUTH_SECRET,
+
   providers: [
     Credentials({
       name: "Credentials",
@@ -35,6 +37,7 @@ export const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.email = user.email;
       }
       return token;
     },
