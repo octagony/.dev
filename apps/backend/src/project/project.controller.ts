@@ -4,7 +4,7 @@ import { IProjectBlock, IProjectPage } from "@/types/IProject.interface.js";
 import { ProjectService } from "@/project/project.service.js";
 import { UpdateProjectDTO } from "@/project/dto/update-project.dto.js";
 
-@Controller('project')
+@Controller('projects')
 export class ProjectController {
 	constructor(private readonly projectService: ProjectService) {}
 

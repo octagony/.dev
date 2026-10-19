@@ -16,7 +16,7 @@ export interface IProjectPage extends IProjectBlock {
   stack: ITechnology[];
   descriptionFull: string;
   githubLink: string;
-  projectLink: string;
+  projectLink?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -27,7 +27,7 @@ export interface CreateProjectInput {
   descriptionFull: string;
   image: string;
   link: string;
-  projectLink: string;
+  projectLink?: string;
   githubLink: string;
   stack: ITechnology[];
 }

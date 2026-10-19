@@ -114,6 +114,10 @@ export const stackBlock: IStackBlock[] = [
         icon: 'shadcn-ui',
       },
       {
+        title: 'Mantine UI',
+        icon: 'mantine',
+      },
+      {
         title: 'Tailwind',
         icon: 'tailwind-css',
       },

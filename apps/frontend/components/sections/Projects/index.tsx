@@ -4,21 +4,12 @@ import { motion } from "motion/react";
 import { useProjects } from "@lib/hooks/useProject";
 import { Container } from "@components/layout/Container";
 import { cn } from "cn";
-import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
 import { Button } from "@components/ui/button";
 import Image from "next/image";
-import { GithubIcon } from "@components/ui/Icon/GithubIcon";
 import Link from "next/link";
 import { SectionHeader } from "@components/layout/SectionHeader";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
-  }
-};
+import { fadeUp } from "@lib/utils";
 
 export function Projects() {
   const { projects, isLoading } = useProjects();
@@ -72,9 +63,9 @@ export function Projects() {
                 </CardDescription>
               </CardHeader>
               <CardFooter>
-                <Button className="cursor-pointer w-full">
-                  View project
-                </Button>
+                <Link href={`/projects/${project.id}`} className="w-full">
+                  <Button className="w-full cursor-pointer">View project</Button>
+                </Link>
               </CardFooter>
             </Card>
           </motion.div>

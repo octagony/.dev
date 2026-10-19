@@ -14,7 +14,7 @@ export function useProjects() {
   );
 
   return {
-    projects: MOCK_PROJECTS,
+    projects: data || MOCK_PROJECTS,
     isLoading,
     isError: error,
     mutate,
