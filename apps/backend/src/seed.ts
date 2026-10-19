@@ -1,6 +1,22 @@
+import { PrismaLibSql } from "@prisma/adapter-libsql";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const databaseUrl = process.env.DATABASE_URL;
+let prismaOptions = {};
+
+if (databaseUrl?.startsWith('libsql://')) {
+  const url = databaseUrl.split('?')[0];
+  const authToken = databaseUrl.split('authToken=')[1];
+  
+  const adapter = new PrismaLibSql({
+    url,
+    authToken,
+  });
+  
+  prismaOptions = { adapter };
+} 
+
+const prisma = new PrismaClient(prismaOptions);
 
 async function main() {
 	await prisma.project.deleteMany();
