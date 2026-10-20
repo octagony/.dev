@@ -1,4 +1,4 @@
-import { IProjectBlock, IProjectPage } from "@lib/interfaces/utility.interface";
+import { IProjectBlock } from "@lib/interfaces/utility.interface";
 
 export const MOCK_PROJECTS: IProjectBlock[] = [
   {
@@ -22,7 +22,7 @@ export const MOCK_PROJECTS: IProjectBlock[] = [
     image: '/projects/midas_bot.jpg',
     link: '/projects/3',
   },
-   {
+  {
     id: 4,
     title: 'ToolsCSS',
     descriptionShort: 'Minimal CSS-framework inspired by TailwindCSS',

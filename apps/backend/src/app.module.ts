@@ -10,4 +10,4 @@ import { ProjectController } from "./project/project.controller.js";
   controllers: [AppController, ProjectController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

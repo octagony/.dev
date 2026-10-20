@@ -1,14 +1,16 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from '@nestjs/common';
 import { CreateProjectDTO } from "@/project/dto/create-project.dto.js";
 import { IProjectBlock, IProjectPage } from "@/types/IProject.interface.js";
 import { ProjectService } from "@/project/project.service.js";
 import { UpdateProjectDTO } from "@/project/dto/update-project.dto.js";
+import { AdminGuard } from "@/admin/admin.guard.js";
 
 @Controller('projects')
 export class ProjectController {
 	constructor(private readonly projectService: ProjectService) {}
 
 	@Post()
+  @UseGuards(AdminGuard)
 	@HttpCode(HttpStatus.CREATED)
 	async create(@Body() createProjectDTO: CreateProjectDTO): Promise<IProjectPage>{
 			return this.projectService.create(createProjectDTO)
@@ -25,6 +27,7 @@ export class ProjectController {
   }
 
   @Put(':id')
+  @UseGuards(AdminGuard)
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateProjectDto: UpdateProjectDTO,
@@ -33,6 +36,7 @@ export class ProjectController {
   }
 
   @Delete(':id')
+  @UseGuards(AdminGuard)
   @HttpCode(HttpStatus.NO_CONTENT)
   async remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
     return this.projectService.remove(id);

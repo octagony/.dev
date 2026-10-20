@@ -1,14 +1,14 @@
 import { PrismaService } from "@/prisma/prisma.service.js";
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProjectDTO } from "@/project/dto/create-project.dto.js";
-import { IProjectBlock, IProjectPage } from "@/types/IProject.interface.js";
+import { IProjectBlock, IProjectPage, ITechnology } from "@/types/IProject.interface.js";
 import { UpdateProjectDTO } from "@/project/dto/update-project.dto.js";
 
 @Injectable()
 export class ProjectService {
-	constructor(private readonly prisma: PrismaService){}
+  constructor(private readonly prisma: PrismaService) { }
 
-	  async create(createProjectDto: CreateProjectDTO): Promise<IProjectPage> {
+  async create(createProjectDto: CreateProjectDTO): Promise<IProjectPage> {
     const { stack, ...projectData } = createProjectDto;
 
     const project = await this.prisma.project.create({
@@ -33,25 +33,25 @@ export class ProjectService {
   }
 
   async findAll(): Promise<IProjectBlock[]> {
-      const projects = await this.prisma.project.findMany({
-        include: {
-          stack: true,
-        },
-        orderBy: {
-          createdAt: 'desc'
-        }
-      });
+    const projects = await this.prisma.project.findMany({
+      include: {
+        stack: true,
+      },
+      orderBy: {
+        createdAt: 'desc'
+      }
+    });
 
-      return projects.map(this.mapToIProjectBlock);
+    return projects.map(this.mapToIProjectBlock);
   }
 
   async findOne(id: number): Promise<IProjectPage> {
     const project = await this.prisma.project.findUnique({
-      where: {id},
+      where: { id },
       include: {
         stack: true,
       }
-    })
+    });
 
     if (!project) {
       throw new NotFoundException(`Project with ID ${id} not found`);
@@ -71,21 +71,30 @@ export class ProjectService {
       throw new NotFoundException(`Project with ID ${id} not found`);
     }
 
+    if (stack && stack.length > 0) {
+      for (const tech of stack) {
+        await this.prisma.technology.upsert({
+          where: { title: tech.title },
+          create: {
+            title: tech.title,
+            icon: tech.icon,
+          },
+          update: {
+            icon: tech.icon,
+          },
+        });
+      }
+    }
+
     const project = await this.prisma.project.update({
       where: { id },
       data: {
         ...projectData,
         stack: stack
           ? {
-              set: [],
-              connectOrCreate: stack.map((tech) => ({
-                where: { title: tech.title },
-                create: {
-                  title: tech.title,
-                  icon: tech.icon,
-                },
-              })),
-            }
+            set: [],
+            connect: stack.map((tech) => ({ title: tech.title }))
+          }
           : undefined,
       },
       include: {
@@ -110,7 +119,7 @@ export class ProjectService {
     });
   }
 
-   private mapToIProjectBlock(project: any): IProjectBlock {
+  private mapToIProjectBlock(project: any): IProjectBlock {
     return {
       id: project.id,
       title: project.title,
@@ -120,7 +129,7 @@ export class ProjectService {
     };
   }
 
-	 private mapToIProjectPage(project: any): IProjectPage {
+  private mapToIProjectPage(project: any): IProjectPage {
     return {
       id: project.id,
       title: project.title,
@@ -130,7 +139,7 @@ export class ProjectService {
       link: project.link,
       projectLink: project.projectLink,
       githubLink: project.githubLink,
-      stack: project.stack.map((tech: any) => ({
+      stack: project.stack.map((tech: ITechnology) => ({
         title: tech.title,
         icon: tech.icon,
       })),
