@@ -1,5 +1,5 @@
 import { GithubIcon } from '@components/ui/Icon/GithubIcon';
-import { IProjectBlock, IStackBlock } from './interfaces/utility.interface';
+import { IStackBlock } from './interfaces/utility.interface';
 import { LinkedinIcon } from '@components/ui/Icon/LinkedinIcon';
 import { TelegramIcon } from '@components/ui/Icon/TelegramIcon';
 import { MailIcon } from '@components/ui/Icon/MailIcon';

@@ -11,13 +11,9 @@ export default function AdminLoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
-    setLoading(true);
 
     try {
       const result = await signIn("credentials", {
@@ -27,15 +23,13 @@ export default function AdminLoginPage() {
       });
 
       if (result?.error) {
-        setError("Mail or password error");
+        throw new Error('Error while logging');
       } else {
         router.push("/admin");
         router.refresh();
       }
     } catch (e) {
-			console.log((e as Error).message)
-    } finally {
-      setLoading(false);
+      console.log((e as Error).message);
     }
   };
 
@@ -104,27 +98,15 @@ export default function AdminLoginPage() {
                 />
               </div>
             </div>
-
-            {error && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="rounded-lg bg-destructive/10 border border-destructive/20 p-3 text-sm text-destructive"
-              >
-                {error}
-              </motion.div>
-            )}
-
             <button
               type="submit"
-              disabled={loading}
               className={cn(
                 "w-full rounded-lg bg-foreground text-background py-2.5 text-sm font-medium",
                 "transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]",
                 "disabled:opacity-50 disabled:cursor-not-allowed"
               )}
             >
-							Login
+              Login
             </button>
           </form>
         </div>

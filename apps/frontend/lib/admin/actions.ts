@@ -19,7 +19,7 @@ export async function createProject(data: FormData) {
 
 	const stackTitles = data.get('stackTitles') as string;
 	const stackArray = stackTitles
-		? stackTitles.split(',').map((t) => ({ title: t.trim(), icon: 'react' }))
+		? stackTitles.split(',').map((t) => ({ title: t.trim(), icon: t.trim().toLowerCase() }))
 		: [];
 
 	const payload = {
@@ -58,9 +58,6 @@ export async function updateProject(id: number, data: FormData) {
 	const stackArray = stackTitles
 		? stackTitles.split(',').map((t) => ({ title: t.trim(), icon: t.trim().toLowerCase() }))
 		: [];
-
-	console.log('🔍 [Server Action updateProject] Отправляемый stackArray:', JSON.stringify(stackArray));
-
 
 	const payload = {
 		title: data.get('title'),
