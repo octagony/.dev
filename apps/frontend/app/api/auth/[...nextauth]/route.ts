@@ -1,15 +1,15 @@
-import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import NextAuth from 'next-auth';
+import Credentials from 'next-auth/providers/credentials';
 
 export const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
 
   providers: [
     Credentials({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: 'Email', type: 'email' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
         if (
@@ -17,9 +17,9 @@ export const handler = NextAuth({
           credentials?.password === process.env.ADMIN_PASSWORD
         ) {
           return {
-            id: "1",
+            id: '1',
             email: credentials?.email as string,
-            name: "Admin",
+            name: 'Admin',
           };
         }
         return null;
@@ -27,10 +27,10 @@ export const handler = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/admin/login",
+    signIn: '/admin/login',
   },
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
     maxAge: 30 * 24 * 60 * 60,
   },
   callbacks: {

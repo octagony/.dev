@@ -9,6 +9,7 @@ import { Container } from "@components/layout/Container";
 import { ProjectsList } from "@components/admin/ProjectList";
 import { deleteProject } from "@lib/admin/actions";
 import { useProjects } from "@lib/hooks/useProject";
+import Link from "next/link";
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession();
@@ -70,16 +71,19 @@ export default function AdminDashboard() {
       </div>
 
       <div className="mb-8">
-        <button
-          className={cn(
-            "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
-            "bg-foreground text-background",
-            "transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]"
-          )}
-        >
-          <Plus className="h-4 w-4" />
-          Add new Project
-        </button>
+        <Link
+          href="/admin/projects/create">
+          <button
+            className={cn(
+              "inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium",
+              "bg-foreground text-background",
+              "transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]"
+            )}
+          >
+            <Plus className="h-4 w-4" />
+            Add new Project
+          </button>
+        </Link>
       </div>
 
       <ProjectsList projects={projects} isLoading={isLoading} deleteProject={handleDelete} />

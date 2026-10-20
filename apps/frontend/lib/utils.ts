@@ -7,7 +7,7 @@ import { MailIcon } from '@components/ui/Icon/MailIcon';
 export { cn } from 'cn';
 
 //PUBLIC API
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 //ANIMATION
 export const animationFadeInUp = {
@@ -98,8 +98,8 @@ export const stackBlock: IStackBlock[] = [
         icon: 'vue',
       },
       {
-        title: 'Next.js',
-        icon: 'nextdotjs',
+        title: 'Next',
+        icon: 'next',
       },
       {
         title: 'Nuxt',
@@ -110,16 +110,16 @@ export const stackBlock: IStackBlock[] = [
         icon: 'tanstack',
       },
       {
-        title: 'shadcn/ui',
-        icon: 'shadcn-ui',
+        title: 'shadcn',
+        icon: 'shadcn',
       },
       {
         title: 'Mantine UI',
-        icon: 'mantine',
+        icon: 'mantineui',
       },
       {
         title: 'Tailwind',
-        icon: 'tailwind-css',
+        icon: 'tailwind',
       },
       {
         title: 'Bootstrap',
@@ -131,7 +131,7 @@ export const stackBlock: IStackBlock[] = [
       },
       {
         title: 'Materialize',
-        icon: 'materializecss',
+        icon: 'materialize',
       },
       {
         title: 'Zustand',
@@ -164,7 +164,7 @@ export const stackBlock: IStackBlock[] = [
       },
       {
         title: 'Vite',
-        icon: 'vitejs',
+        icon: 'vite',
       },
     ],
   },
@@ -172,8 +172,8 @@ export const stackBlock: IStackBlock[] = [
     name: 'Backend & DB',
     stack: [
       {
-        title: 'Node.js',
-        icon: 'nodejs',
+        title: 'Node',
+        icon: 'node',
       },
       {
         title: 'Bun',
@@ -231,18 +231,8 @@ export const stackBlock: IStackBlock[] = [
       },
       {
         title: 'RTL',
-        icon: 'testing-library',
+        icon: 'rtl',
       },
     ],
-  },
-];
-
-export const projectBlock: IProjectBlock[] = [
-  {
-    id: 1,
-    title: 'Kitabox',
-    descriptionShort: 'Create a temporary email address for receiving emails',
-    link: '/projects/',
-    image: '',
   },
 ];
