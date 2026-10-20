@@ -1,10 +1,10 @@
-'use client';
+'use client'
 
-import type { JSX } from 'react';
-import { useSyncExternalStore } from 'react';
-import { MoonIcon, SunIcon } from 'lucide-react';
-import { motion } from 'motion/react';
-import { useTheme } from 'next-themes';
+import type { JSX } from 'react'
+import { useSyncExternalStore } from 'react'
+import { MoonIcon, SunIcon } from 'lucide-react'
+import { motion } from 'motion/react'
+import { useTheme } from 'next-themes'
 
 function ThemeOption({
   icon,
@@ -12,10 +12,10 @@ function ThemeOption({
   isActive,
   onClick,
 }: {
-  icon: JSX.Element;
-  value: string;
-  isActive?: boolean;
-  onClick: (value: string) => void;
+  icon: JSX.Element
+  value: string
+  isActive?: boolean
+  onClick: (value: string) => void
 }) {
   return (
     <button
@@ -36,7 +36,7 @@ function ThemeOption({
         />
       )}
     </button>
-  );
+  )
 }
 
 const THEME_OPTIONS = [
@@ -48,28 +48,28 @@ const THEME_OPTIONS = [
     icon: <MoonIcon />,
     value: 'dark',
   },
-];
+]
 
 function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
 
   function toggleTheme(theme: string) {
     if (!document.startViewTransition) {
-      setTheme(theme);
-      return;
+      setTheme(theme)
+      return
     }
 
-    document.startViewTransition(() => setTheme(theme));
+    document.startViewTransition(() => setTheme(theme))
   }
 
   const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false,
-  );
+  )
 
   if (!isMounted) {
-    return <div className="flex h-8 w-24" />;
+    return <div className="flex h-8 w-24" />
   }
 
   return (
@@ -91,7 +91,7 @@ function ThemeSwitcher() {
         />
       ))}
     </motion.div>
-  );
+  )
 }
 
-export { ThemeSwitcher };
+export { ThemeSwitcher }

@@ -1,34 +1,34 @@
-'use client';
+'use client'
 
-import { useTheme } from 'next-themes';
-import { useSyncExternalStore } from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { cn } from 'cn';
-import { IconSwap, IconSwapItem } from '@components/ui/icon-swap';
+import { useTheme } from 'next-themes'
+import { useSyncExternalStore } from 'react'
+import { Moon, Sun } from 'lucide-react'
+import { cn } from 'cn'
+import { IconSwap, IconSwapItem } from '@components/ui/icon-swap'
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme()
 
   const isMounted = useSyncExternalStore(
     () => () => {},
     () => true,
     () => false,
-  );
+  )
 
   if (!isMounted) {
-    return <div className="flex h-8 w-24" />;
+    return <div className="flex h-8 w-24" />
   }
 
   const handleSetTheme = () => {
-    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
 
     if (!document.startViewTransition) {
-      setTheme(newTheme);
-      return;
+      setTheme(newTheme)
+      return
     }
 
-    document.startViewTransition(() => setTheme(newTheme));
-  };
+    document.startViewTransition(() => setTheme(newTheme))
+  }
 
   return (
     <button
@@ -48,5 +48,5 @@ export function ThemeToggle() {
         </IconSwapItem>
       </IconSwap>
     </button>
-  );
+  )
 }

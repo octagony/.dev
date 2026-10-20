@@ -1,5 +1,5 @@
-import NextAuth from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
+import NextAuth from 'next-auth'
+import Credentials from 'next-auth/providers/credentials'
 
 export const handler = NextAuth({
   secret: process.env.NEXTAUTH_SECRET,
@@ -20,9 +20,9 @@ export const handler = NextAuth({
             id: '1',
             email: credentials?.email as string,
             name: 'Admin',
-          };
+          }
         }
-        return null;
+        return null
       },
     }),
   ],
@@ -36,18 +36,18 @@ export const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id;
-        token.email = user.email;
+        token.id = user.id
+        token.email = user.email
       }
-      return token;
+      return token
     },
     async session({ session, token }) {
       if (session.user) {
-        session.user.id = token.id as string;
+        session.user.id = token.id as string
       }
-      return session;
+      return session
     },
   },
-});
+})
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }

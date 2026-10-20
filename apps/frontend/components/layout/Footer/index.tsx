@@ -1,20 +1,20 @@
-'use client';
+'use client'
 
-import { motion } from 'motion/react';
-import { ArrowUp, Code2, Heart } from 'lucide-react';
-import { Container } from '@components/layout/Container';
-import { cn } from 'cn';
-import { Icon } from '@components/ui/Icon';
-import { NextIcon } from '@components/ui/Icon/NextIcon';
-import { TailwindIcon } from '@components/ui/Icon/TailwindIcon';
-import { MotionIcon } from '@components/ui/Icon/MotionIcon';
+import { motion } from 'motion/react'
+import { ArrowUp, Code2, Heart } from 'lucide-react'
+import { Container } from '@components/layout/Container'
+import { cn } from 'cn'
+import { Icon } from '@components/ui/Icon'
+import { NextIcon } from '@components/ui/Icon/NextIcon'
+import { TailwindIcon } from '@components/ui/Icon/TailwindIcon'
+import { MotionIcon } from '@components/ui/Icon/MotionIcon'
 
 export function Footer() {
-  const currentYear = new Date().getFullYear().toString();
+  const currentYear = new Date().getFullYear().toString()
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   return (
     <footer className="border-t border-dashed bg-background/50 backdrop-blur-sm">
@@ -62,5 +62,5 @@ export function Footer() {
         </motion.div>
       </Container>
     </footer>
-  );
+  )
 }

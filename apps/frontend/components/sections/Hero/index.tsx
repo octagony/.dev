@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
-import { cn } from 'cn';
-import { Container } from '@components/layout/Container';
-import { animationFadeInUp } from '@lib/utils';
-import Image from 'next/image';
+import { motion } from 'motion/react'
+import { ArrowRight } from 'lucide-react'
+import { cn } from 'cn'
+import { Container } from '@components/layout/Container'
+import { animationFadeInUp } from '@lib/utils'
+import Image from 'next/image'
 
 export function Hero() {
   return (
@@ -91,5 +91,5 @@ export function Hero() {
         </motion.div>
       </motion.div>
     </Container>
-  );
+  )
 }

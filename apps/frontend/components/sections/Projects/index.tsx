@@ -1,18 +1,18 @@
-"use client";
+'use client'
 
-import { motion } from "motion/react";
-import { useProjects } from "@lib/hooks/useProject";
-import { Container } from "@components/layout/Container";
-import { cn } from "cn";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@components/ui/card";
-import { Button } from "@components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
-import { SectionHeader } from "@components/layout/SectionHeader";
-import { fadeUp } from "@lib/utils";
+import { motion } from 'motion/react'
+import { useProjects } from '@lib/hooks/useProject'
+import { Container } from '@components/layout/Container'
+import { cn } from 'cn'
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
+import { Button } from '@components/ui/button'
+import Image from 'next/image'
+import Link from 'next/link'
+import { SectionHeader } from '@components/layout/SectionHeader'
+import { fadeUp } from '@lib/utils'
 
 export function Projects() {
-  const { projects, isLoading } = useProjects();
+  const { projects, isLoading } = useProjects()
 
   if (isLoading) {
     return (
@@ -21,9 +21,8 @@ export function Projects() {
           Loading projects...
         </div>
       </Container>
-    );
+    )
   }
-
 
   return (
     <Container className="pt-4 pb-4 md:pt-8 md:pb-8 border-l border-r border-t">
@@ -35,14 +34,14 @@ export function Projects() {
             key={project.id}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: '-50px' }}
             variants={fadeUp}
             transition={{ delay: index * 0.1 }}
             className={cn(
-              "group w-full relative overflow-hidden",
-              "transition-all duration-300",
-              "hover:scale-[1.02]",
-              "active:scale-[0.98] cursor-pointerhover:bg-muted/60"
+              'group w-full relative overflow-hidden',
+              'transition-all duration-300',
+              'hover:scale-[1.02]',
+              'active:scale-[0.98] cursor-pointerhover:bg-muted/60',
             )}
           >
             <Card className="relative mx-auto w-full max-w-sm pt-0" key={project.id}>
@@ -58,13 +57,11 @@ export function Projects() {
               </div>
               <CardHeader>
                 <CardTitle>{project.title}</CardTitle>
-                <CardDescription>
-                  {project.descriptionShort}
-                </CardDescription>
+                <CardDescription>{project.descriptionShort}</CardDescription>
               </CardHeader>
               <CardFooter>
                 <Link href={`/projects/${project.id}`} className="w-full">
-                  <Button className="w-full cursor-pointer">View project</Button>
+                  <Button className="w-full py-2 md:py-5 cursor-pointer">View project</Button>
                 </Link>
               </CardFooter>
             </Card>
@@ -72,5 +69,5 @@ export function Projects() {
         ))}
       </div>
     </Container>
-  );
+  )
 }

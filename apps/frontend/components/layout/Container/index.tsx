@@ -1,5 +1,5 @@
-import { cn } from '@lib/utils';
-import { IContainerComponentProps } from '@components/layout/Container/IContainer.interface';
+import { cn } from '@lib/utils'
+import { IContainerComponentProps } from '@components/layout/Container/IContainer.interface'
 
 export function Container({ children, className, ...props }: IContainerComponentProps) {
   return (
@@ -9,5 +9,5 @@ export function Container({ children, className, ...props }: IContainerComponent
     >
       {children}
     </section>
-  );
+  )
 }

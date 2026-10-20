@@ -1,18 +1,18 @@
-'use client';
+'use client'
 
-import { motion } from 'motion/react';
-import { Container } from '@components/layout/Container';
-import { cn } from 'cn';
-import { ArrowUpRight } from 'lucide-react';
-import { DOT_COLOR, fadeUp, socialLinks } from '@lib/utils';
-import { SectionHeader } from '@components/layout/SectionHeader';
-import { DotGridSpotlight } from '@components/ui/dot-grid-spotlight';
-import { useTheme } from 'next-themes';
-import { Icon } from '@components/ui/Icon';
+import { motion } from 'motion/react'
+import { Container } from '@components/layout/Container'
+import { cn } from 'cn'
+import { ArrowUpRight } from 'lucide-react'
+import { DOT_COLOR, fadeUp, socialLinks } from '@lib/utils'
+import { SectionHeader } from '@components/layout/SectionHeader'
+import { DotGridSpotlight } from '@components/ui/dot-grid-spotlight'
+import { useTheme } from 'next-themes'
+import { Icon } from '@components/ui/Icon'
 
 export function Contact() {
-  const { resolvedTheme } = useTheme();
-  const theme = resolvedTheme === 'dark' ? 'dark' : 'light';
+  const { resolvedTheme } = useTheme()
+  const theme = resolvedTheme === 'dark' ? 'dark' : 'light'
 
   return (
     <Container
@@ -73,5 +73,5 @@ export function Contact() {
         ))}
       </div>
     </Container>
-  );
+  )
 }
