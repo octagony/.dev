@@ -1,11 +1,11 @@
-'use client';
+'use client'
 
-import { Container } from '@components/layout/Container';
-import { SectionHeader } from '@components/layout/SectionHeader';
-import { Badge } from '@components/ui/badge';
-import { animationFadeInUp, stackBlock } from '@lib/utils';
-import { motion } from 'motion/react';
-import Image from 'next/image';
+import { Container } from '@components/layout/Container'
+import { SectionHeader } from '@components/layout/SectionHeader'
+import { Badge } from '@components/ui/badge'
+import { animationFadeInUp, stackBlock } from '@lib/utils'
+import { motion } from 'motion/react'
+import Image from 'next/image'
 
 export function Stack() {
   return (
@@ -69,13 +69,13 @@ export function Stack() {
               >
                 {item.stack.map((tech, i) => (
                   <li key={i} className="flex">
-                    <Badge variant="outline" className="py-3 md:py-4">
+                    <Badge variant="outline" className="py-3">
                       <Image
                         src={`/icons/${tech.icon}.svg`}
                         alt="img"
                         width={0}
                         height={0}
-                        className="rounded-sm w-5 h-5 md:w-6 md:h-6"
+                        className="rounded-sm w-4 h-4"
                       />
                       <span className="md:text-sm">{tech.title}</span>
                     </Badge>
@@ -87,5 +87,5 @@ export function Stack() {
         </motion.div>
       </motion.div>
     </Container>
-  );
+  )
 }

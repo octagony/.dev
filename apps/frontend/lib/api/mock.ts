@@ -1,4 +1,4 @@
-import { IProjectBlock } from "@lib/interfaces/utility.interface";
+import { IProjectBlock } from '@lib/interfaces/utility.interface'
 
 export const MOCK_PROJECTS: IProjectBlock[] = [
   {
@@ -29,4 +29,4 @@ export const MOCK_PROJECTS: IProjectBlock[] = [
     image: '/projects/toolscss.png',
     link: '/projects/4',
   },
-];
+]

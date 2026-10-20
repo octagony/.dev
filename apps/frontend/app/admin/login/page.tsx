@@ -1,37 +1,37 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { motion } from "motion/react";
-import { Lock, Mail } from "lucide-react";
-import { cn } from "@lib/utils";
+import { useState } from 'react'
+import { signIn } from 'next-auth/react'
+import { useRouter } from 'next/navigation'
+import { motion } from 'motion/react'
+import { Lock, Mail } from 'lucide-react'
+import { cn } from '@lib/utils'
 
 export default function AdminLoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      const result = await signIn("credentials", {
+      const result = await signIn('credentials', {
         email,
         password,
         redirect: false,
-      });
+      })
 
       if (result?.error) {
-        throw new Error('Error while logging');
+        throw new Error('Error while logging')
       } else {
-        router.push("/admin");
-        router.refresh();
+        router.push('/admin')
+        router.refresh()
       }
     } catch (e) {
-      console.log((e as Error).message);
+      console.log((e as Error).message)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
@@ -43,17 +43,12 @@ export default function AdminLoginPage() {
       >
         <div className="rounded-2xl border border-border bg-muted/30 p-8 shadow-lg">
           <div className="mb-8 text-center">
-            <h1 className="text-2xl font-semibold tracking-tight text-foreground">
-              Admin Login
-            </h1>
+            <h1 className="text-2xl font-semibold tracking-tight text-foreground">Admin Login</h1>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label
-                htmlFor="email"
-                className="mb-2 block text-sm font-medium text-foreground"
-              >
+              <label htmlFor="email" className="mb-2 block text-sm font-medium text-foreground">
                 Email
               </label>
               <div className="relative">
@@ -65,20 +60,17 @@ export default function AdminLoginPage() {
                   onChange={(e) => setEmail(e.target.value)}
                   required
                   className={cn(
-                    "w-full rounded-lg border border-border bg-background pl-10 pr-4 py-2.5 text-sm",
-                    "placeholder:text-muted-foreground",
-                    "focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground",
-                    "transition-colors"
+                    'w-full rounded-lg border border-border bg-background pl-10 pr-4 py-2.5 text-sm',
+                    'placeholder:text-muted-foreground',
+                    'focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground',
+                    'transition-colors',
                   )}
                 />
               </div>
             </div>
 
             <div>
-              <label
-                htmlFor="password"
-                className="mb-2 block text-sm font-medium text-foreground"
-              >
+              <label htmlFor="password" className="mb-2 block text-sm font-medium text-foreground">
                 Password
               </label>
               <div className="relative">
@@ -90,10 +82,10 @@ export default function AdminLoginPage() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   className={cn(
-                    "w-full rounded-lg border border-border bg-background pl-10 pr-4 py-2.5 text-sm",
-                    "placeholder:text-muted-foreground",
-                    "focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground",
-                    "transition-colors"
+                    'w-full rounded-lg border border-border bg-background pl-10 pr-4 py-2.5 text-sm',
+                    'placeholder:text-muted-foreground',
+                    'focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground',
+                    'transition-colors',
                   )}
                 />
               </div>
@@ -101,9 +93,9 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               className={cn(
-                "w-full rounded-lg bg-foreground text-background py-2.5 text-sm font-medium",
-                "transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]",
-                "disabled:opacity-50 disabled:cursor-not-allowed"
+                'w-full rounded-lg bg-foreground text-background py-2.5 text-sm font-medium',
+                'transition-all hover:bg-foreground/90 hover:scale-[1.02] active:scale-[0.98]',
+                'disabled:opacity-50 disabled:cursor-not-allowed',
               )}
             >
               Login
@@ -112,5 +104,5 @@ export default function AdminLoginPage() {
         </div>
       </motion.div>
     </div>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
-import { cn } from 'cn';
+import { motion } from 'motion/react'
+import Link from 'next/link'
+import { ArrowLeft } from 'lucide-react'
+import { cn } from 'cn'
 
 export default function NotFound() {
   return (
@@ -60,5 +60,5 @@ export default function NotFound() {
         </motion.div>
       </motion.div>
     </div>
-  );
+  )
 }

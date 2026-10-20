@@ -1,9 +1,9 @@
-'use client';
+'use client'
 
-import { Container } from '@components/layout/Container';
-import { SectionHeader } from '@components/layout/SectionHeader';
-import { animationFadeInUp } from '@lib/utils';
-import { motion } from 'motion/react';
+import { Container } from '@components/layout/Container'
+import { SectionHeader } from '@components/layout/SectionHeader'
+import { animationFadeInUp } from '@lib/utils'
+import { motion } from 'motion/react'
 
 export function About() {
   return (
@@ -31,5 +31,5 @@ export function About() {
         </motion.p>
       </motion.div>
     </Container>
-  );
+  )
 }

@@ -1,26 +1,26 @@
-'use client';
+'use client'
 
-import { useEffect, useState } from 'react';
-import { motion } from 'motion/react';
-import Link from 'next/link';
-import { cn } from 'cn';
-import { ThemeToggle } from '@components/ui/ThemeToggler';
-import { Octagon } from 'lucide-react';
+import { useEffect, useState } from 'react'
+import { motion } from 'motion/react'
+import Link from 'next/link'
+import { cn } from 'cn'
+import { ThemeToggle } from '@components/ui/ThemeToggler'
+import { Octagon } from 'lucide-react'
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
+      setScrolled(window.scrollY > 20)
+    }
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <motion.header
@@ -49,5 +49,5 @@ export function Header() {
         </div>
       </div>
     </motion.header>
-  );
+  )
 }
