@@ -45,7 +45,7 @@ export default function AdminDashboard() {
         );
       }
     } catch (e) {
-      console.log(e);
+      console.log((e as Error).message);
     }
   };
 
