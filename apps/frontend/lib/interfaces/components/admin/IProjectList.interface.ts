@@ -4,4 +4,5 @@ export interface IProjectListProps {
   projects: IProjectBlock[]
   deleteProject: (id: number) => Promise<void>
   isLoading: boolean
+  handleToggleFavorite: (id: number) => Promise<void>
 }

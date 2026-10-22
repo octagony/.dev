@@ -1,5 +1,5 @@
 import { PrismaService } from "@/prisma/prisma.service.js";
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProjectDTO } from "@/project/dto/create-project.dto.js";
 import { IProjectBlock, IProjectPage, ITechnology } from "@/types/IProject.interface.js";
 import { UpdateProjectDTO } from "@/project/dto/update-project.dto.js";
@@ -10,6 +10,10 @@ export class ProjectService {
 
   async create(createProjectDto: CreateProjectDTO): Promise<IProjectPage> {
     const { stack, ...projectData } = createProjectDto;
+
+    if (createProjectDto.isFavorite) {
+      await this.checkFavoriteLimit();
+    }
 
     const project = await this.prisma.project.create({
       data: {
@@ -60,6 +64,23 @@ export class ProjectService {
     return this.mapToIProjectPage(project);
   }
 
+  async findFavorites(): Promise<IProjectBlock[]> {
+    const projects = await this.prisma.project.findMany({
+      where: {
+        isFavorite: true
+      },
+      include: {
+        stack: true
+      },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      take: 4,
+    });
+
+    return projects.map(this.mapToIProjectBlock);
+  }
+
   async update(id: number, updateProjectDto: UpdateProjectDTO): Promise<IProjectPage> {
     const { stack, ...projectData } = updateProjectDto;
 
@@ -69,6 +90,10 @@ export class ProjectService {
 
     if (!existingProject) {
       throw new NotFoundException(`Project with ID ${id} not found`);
+    }
+
+    if (updateProjectDto.isFavorite && !existingProject.isFavorite) {
+      await this.checkFavoriteLimit();
     }
 
     if (stack && stack.length > 0) {
@@ -105,6 +130,25 @@ export class ProjectService {
     return this.mapToIProjectPage(project);
   }
 
+  async toggleFavorite(id: number): Promise<{ isFavorite: boolean; }> {
+    const project = await this.prisma.project.findUnique({ where: { id } });
+
+    if (!project) {
+      throw new NotFoundException(`Project with ID ${id} not found`);
+    }
+
+    if (!project.isFavorite) {
+      await this.checkFavoriteLimit();
+    }
+
+    const updated = await this.prisma.project.update({
+      where: { id },
+      data: { isFavorite: !project.isFavorite },
+    });
+
+    return { isFavorite: updated.isFavorite };
+  }
+
   async remove(id: number): Promise<void> {
     const existingProject = await this.prisma.project.findUnique({
       where: { id },
@@ -119,6 +163,18 @@ export class ProjectService {
     });
   }
 
+  private async checkFavoriteLimit(): Promise<void> {
+    const count = await this.prisma.project.count({
+      where: { isFavorite: true },
+    });
+
+    if (count >= 4) {
+      throw new BadRequestException(
+        'Max favorite count = 4'
+      );
+    }
+  }
+
   private mapToIProjectBlock(project: any): IProjectBlock {
     return {
       id: project.id,
@@ -126,6 +182,7 @@ export class ProjectService {
       descriptionShort: project.descriptionShort,
       image: project.image,
       link: project.link,
+      isFavorite: project.isFavorite
     };
   }
 
@@ -139,6 +196,7 @@ export class ProjectService {
       link: project.link,
       projectLink: project.projectLink,
       githubLink: project.githubLink,
+      isFavorite: project.isFavorite,
       stack: project.stack.map((tech: ITechnology) => ({
         title: tech.title,
         icon: tech.icon,

@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Patch, Post, Put, UseGuards } from '@nestjs/common';
 import { CreateProjectDTO } from "@/project/dto/create-project.dto.js";
 import { IProjectBlock, IProjectPage } from "@/types/IProject.interface.js";
 import { ProjectService } from "@/project/project.service.js";
@@ -7,19 +7,31 @@ import { AdminGuard } from "@/admin/admin.guard.js";
 
 @Controller('projects')
 export class ProjectController {
-	constructor(private readonly projectService: ProjectService) {}
+  constructor(private readonly projectService: ProjectService) { }
 
-	@Post()
+  @Post()
   @UseGuards(AdminGuard)
-	@HttpCode(HttpStatus.CREATED)
-	async create(@Body() createProjectDTO: CreateProjectDTO): Promise<IProjectPage>{
-			return this.projectService.create(createProjectDTO)
-	}
+  @HttpCode(HttpStatus.CREATED)
+  async create(@Body() createProjectDTO: CreateProjectDTO): Promise<IProjectPage> {
+    return this.projectService.create(createProjectDTO);
+  }
 
-	@Get()
+  @Get()
   async findAll(): Promise<IProjectBlock[]> {
     return this.projectService.findAll();
   }
+
+  @Get('favorites')
+  async findFavorites(): Promise<IProjectBlock[]> {
+    return this.projectService.findFavorites();
+  }
+
+  @Patch(':id/favorite')
+  @UseGuards(AdminGuard)
+  async toggleFavorite(@Param('id', ParseIntPipe) id: number) {
+    return this.projectService.toggleFavorite(id);
+  }
+
 
   @Get(':id')
   async findOne(@Param('id', ParseIntPipe) id: number): Promise<IProjectPage> {

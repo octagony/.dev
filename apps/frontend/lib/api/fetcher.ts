@@ -27,4 +27,5 @@ export const apiHandlers = {
   //PROJECTS
   getAllProjects: () => fetcher<IProjectBlock[]>(`${API_BASE_URL}/projects`),
   getProjectById: (id: number) => fetcher<IProjectPage>(`${API_BASE_URL}/projects/${id}`),
+  getFavorites: () => fetcher<IProjectBlock[]>(`${API_BASE_URL}/projects/favorites`),
 }

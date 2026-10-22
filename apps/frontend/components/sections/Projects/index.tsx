@@ -1,18 +1,15 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { useProjects } from '@lib/hooks/useProject'
+import { useFavoriteProjects } from '@lib/hooks/useProject'
 import { Container } from '@components/layout/Container'
 import { cn } from 'cn'
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@components/ui/card'
-import { Button } from '@components/ui/button'
-import Image from 'next/image'
-import Link from 'next/link'
 import { SectionHeader } from '@components/layout/SectionHeader'
-import { fadeUp } from '@lib/utils'
+import { animationFadeUp } from '@lib/utils'
+import { ProjectCard } from '@components/ui/ProjectCard'
 
 export function Projects() {
-  const { projects, isLoading } = useProjects()
+  const { projects, isLoading } = useFavoriteProjects()
 
   if (isLoading) {
     return (
@@ -35,7 +32,7 @@ export function Projects() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            variants={fadeUp}
+            variants={animationFadeUp}
             transition={{ delay: index * 0.1 }}
             className={cn(
               'group w-full relative overflow-hidden',
@@ -44,27 +41,7 @@ export function Projects() {
               'active:scale-[0.98] cursor-pointerhover:bg-muted/60',
             )}
           >
-            <Card className="relative mx-auto w-full max-w-sm pt-0" key={project.id}>
-              <div className="relative aspect-video overflow-hidden rounded-t-xl">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="absolute inset-0 z-10 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-              </div>
-              <CardHeader>
-                <CardTitle>{project.title}</CardTitle>
-                <CardDescription>{project.descriptionShort}</CardDescription>
-              </CardHeader>
-              <CardFooter>
-                <Link href={`/projects/${project.id}`} className="w-full">
-                  <Button className="w-full py-2 md:py-5 cursor-pointer">View project</Button>
-                </Link>
-              </CardFooter>
-            </Card>
+            <ProjectCard project={project} key={index} />
           </motion.div>
         ))}
       </div>

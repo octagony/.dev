@@ -3,7 +3,7 @@
 import { Container } from '@components/layout/Container'
 import { SectionHeader } from '@components/layout/SectionHeader'
 import { Badge } from '@components/ui/badge'
-import { animationFadeInUp, stackBlock } from '@lib/utils'
+import { animationFadeUp, stackBlock } from '@lib/utils'
 import { motion } from 'motion/react'
 import Image from 'next/image'
 
@@ -25,7 +25,7 @@ export function Stack() {
       >
         <SectionHeader text="Stack" />
         <motion.p
-          variants={animationFadeInUp}
+          variants={animationFadeUp}
           className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-2xl relative mb-2"
         >
           Take a look at what i use in my development
@@ -50,20 +50,20 @@ export function Stack() {
             >
               <div>
                 <motion.span
-                  variants={animationFadeInUp}
+                  variants={animationFadeUp}
                   className="mr-1.5 font-mono text-muted-foreground select-none"
                 >
                   0{index + 1}
                 </motion.span>
                 <motion.span
-                  variants={animationFadeInUp}
+                  variants={animationFadeUp}
                   className="font-mono text-muted-foreground select-none"
                 >
                   {item.name}
                 </motion.span>
               </div>
               <motion.ul
-                variants={animationFadeInUp}
+                variants={animationFadeUp}
                 aria-labelledby={`stack-${item.name}`}
                 className="flex flex-wrap gap-1.5 md:gap-4 px-4"
               >

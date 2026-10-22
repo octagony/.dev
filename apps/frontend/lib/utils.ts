@@ -10,19 +10,8 @@ export { cn } from 'cn'
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
 //ANIMATION
-export const animationFadeInUp = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  } as const,
-}
 
-export const fadeUp = {
+export const animationFadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
