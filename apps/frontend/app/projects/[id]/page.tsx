@@ -10,7 +10,7 @@ import { Container } from '@components/layout/Container'
 import { cn } from 'cn'
 import { GithubIcon } from '@components/ui/Icon/GithubIcon'
 import { SectionHeader } from '@components/layout/SectionHeader'
-import { fadeUp } from '@lib/utils'
+import { animationFadeUp } from '@lib/utils'
 
 export default function ProjectPage() {
   const params = useParams()
@@ -50,14 +50,14 @@ export default function ProjectPage() {
         Back to projects
       </motion.button>
 
-      <motion.div initial="hidden" animate="visible" variants={fadeUp} className="mb-8">
+      <motion.div initial="hidden" animate="visible" variants={animationFadeUp} className="mb-8">
         <SectionHeader text={project.title} />
       </motion.div>
 
       <motion.div
         initial="hidden"
         animate="visible"
-        variants={fadeUp}
+        variants={animationFadeUp}
         transition={{ delay: 0.1 }}
         className="mb-10 md:mb-12 relative aspect-video w-full overflow-hidden rounded-2xl border border-border bg-muted"
       >
@@ -74,7 +74,7 @@ export default function ProjectPage() {
       <motion.div
         initial="hidden"
         animate="visible"
-        variants={fadeUp}
+        variants={animationFadeUp}
         transition={{ delay: 0.2 }}
         className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"
       >

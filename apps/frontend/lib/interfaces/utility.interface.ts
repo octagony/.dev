@@ -10,13 +10,13 @@ export interface ITechnology {
 }
 
 //PROJECT INTERFACES
-
 export interface IProjectBlock {
   id: number
   title: string
   descriptionShort: string
   image: string
   link: string
+  isFavorite: boolean
 }
 
 export interface IProjectPage extends IProjectBlock {

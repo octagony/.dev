@@ -107,3 +107,22 @@ export async function deleteProject(id: number) {
   revalidatePath('/admin')
   return { success: true }
 }
+
+export async function toggleFavorite(id: number) {
+  const token = await requireAuth()
+
+  const res = await fetch(`${API_BASE_URL}/projects/${id}/favorite`, {
+    method: 'PATCH',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  })
+
+  if (!res.ok) {
+    const errorText = await res.text()
+    throw new Error(errorText)
+  }
+
+  revalidatePath('/admin')
+  return { success: true }
+}

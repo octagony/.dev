@@ -31,6 +31,7 @@ async function main() {
 			link: '/projects/1',
 			projectLink: 'https://kitabbox.netlify.app/',
 			githubLink: 'https://github.com/octagony/kitabox',
+			isFavorite: true,
 			stack: {
 				connectOrCreate: [
 					{
@@ -61,6 +62,7 @@ async function main() {
 			link: '/projects/2',
 			projectLink: 'https://larius-one.vercel.app/',
 			githubLink: 'https://github.com/octagony/larius',
+			isFavorite: true,
 			stack: {
 				connectOrCreate: [
 					{
@@ -93,6 +95,7 @@ async function main() {
 			link: '/projects/3',
 			projectLink: 'https://t.me/midas_currency_bot',
 			githubLink: 'https://github.com/octagony/midas_tg_bot',
+			isFavorite: true,
 			stack: {
 				connectOrCreate: [
 					{
@@ -112,6 +115,7 @@ async function main() {
 			image: '/projects/toolscss.png',
 			link: '/projects/4',
 			githubLink: 'https://github.com/octagony/toolscss',
+			isFavorite: true,
 			stack: {
 				connectOrCreate: [
 					{

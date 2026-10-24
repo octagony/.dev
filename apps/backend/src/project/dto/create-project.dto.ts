@@ -1,6 +1,6 @@
 import { CreateProjectInput, ITechnology } from "@/types/IProject.interface.js";
 import { Type } from "class-transformer";
-import { IsArray, IsOptional, IsString, ValidateNested } from "class-validator";
+import { IsArray, IsBoolean, IsOptional, IsString, ValidateNested } from "class-validator";
 
 
 export class TechnologyDTO implements ITechnology {
@@ -33,6 +33,10 @@ export class CreateProjectDTO implements CreateProjectInput{
 
   @IsString()
   githubLink: string;
+
+  @IsOptional()
+  @IsBoolean()
+  isFavorite: boolean;
 
   @IsArray()
   @ValidateNested({ each: true })

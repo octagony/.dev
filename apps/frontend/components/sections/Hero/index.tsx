@@ -4,8 +4,9 @@ import { motion } from 'motion/react'
 import { ArrowRight } from 'lucide-react'
 import { cn } from 'cn'
 import { Container } from '@components/layout/Container'
-import { animationFadeInUp } from '@lib/utils'
+import { animationFadeUp } from '@lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
 
 export function Hero() {
   return (
@@ -41,7 +42,7 @@ export function Hero() {
         }}
         className="space-y-8"
       >
-        <motion.div variants={animationFadeInUp} className="flex items-center gap-2.5">
+        <motion.div variants={animationFadeUp} className="flex items-center gap-2.5">
           <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
             <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
@@ -52,7 +53,7 @@ export function Hero() {
         </motion.div>
 
         <motion.h1
-          variants={animationFadeInUp}
+          variants={animationFadeUp}
           className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground leading-[1.1]"
         >
           From idea to production
@@ -61,14 +62,14 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          variants={animationFadeInUp}
+          variants={animationFadeUp}
           className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-2xl"
         >
           I help projects launch quickly, scale thoughtfully, and stay polished—in code, design, and
           ethics.
         </motion.p>
 
-        <motion.div variants={animationFadeInUp} className="flex flex-wrap gap-4 pt-2">
+        <motion.div variants={animationFadeUp} className="flex flex-wrap gap-4 pt-2">
           <a
             href="#contact"
             className={cn(
@@ -79,15 +80,14 @@ export function Hero() {
             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
           </a>
 
-          {/* TODO: IMPLEMENT PROJECTS */}
-          {/* <Link
-            href="#contact"
+          <Link
+            href="/projects"
             className={cn(
               'inline-flex items-center justify-center gap-2 rounded-xl border border-border bg-muted/50 px-6 py-3 text-sm font-medium text-foreground transition-all hover:bg-muted hover:border-border/80 hover:scale-[1.02] active:scale-[0.98]',
             )}
           >
             View Projects
-          </Link> */}
+          </Link>
         </motion.div>
       </motion.div>
     </Container>

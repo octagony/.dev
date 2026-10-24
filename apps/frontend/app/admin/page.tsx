@@ -3,13 +3,13 @@
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import { LogOut, Plus, Loader2 } from 'lucide-react'
-import { cn } from '@lib/utils'
-import { Container } from '@components/layout/Container'
-import { ProjectsList } from '@components/admin/ProjectList'
-import { deleteProject } from '@lib/admin/actions'
+import { Loader2, LogOut, Plus } from 'lucide-react'
+import { deleteProject, toggleFavorite } from '@lib/admin/actions'
 import { useProjects } from '@lib/hooks/useProject'
+import { cn } from 'cn'
+import { Container } from '@components/layout/Container'
 import Link from 'next/link'
+import { ProjectsList } from '@components/admin/ProjectList'
 
 export default function AdminDashboard() {
   const { data: session, status } = useSession()
@@ -40,6 +40,30 @@ export default function AdminDashboard() {
 
       if (result.success) {
         mutate((currentProjects) => currentProjects?.filter((p) => p.id !== projectId), false)
+      }
+    } catch (e) {
+      console.log((e as Error).message)
+    }
+  }
+
+  const handleToggleFavorite = async (projectId: number) => {
+    try {
+      const result = await toggleFavorite(projectId)
+
+      if (result.success) {
+        mutate(
+          (currentProjects) =>
+            currentProjects?.map((p) => {
+              if (projectId === p.id) {
+                return {
+                  ...p,
+                  isFavorite: !p.isFavorite,
+                }
+              }
+              return p
+            }),
+          false,
+        )
       }
     } catch (e) {
       console.log((e as Error).message)
@@ -80,7 +104,12 @@ export default function AdminDashboard() {
         </Link>
       </div>
 
-      <ProjectsList projects={projects} isLoading={isLoading} deleteProject={handleDelete} />
+      <ProjectsList
+        projects={projects}
+        isLoading={isLoading}
+        deleteProject={handleDelete}
+        handleToggleFavorite={handleToggleFavorite}
+      />
     </Container>
   )
 }

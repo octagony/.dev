@@ -2,7 +2,7 @@
 
 import { Container } from '@components/layout/Container'
 import { SectionHeader } from '@components/layout/SectionHeader'
-import { animationFadeInUp } from '@lib/utils'
+import { animationFadeUp } from '@lib/utils'
 import { motion } from 'motion/react'
 
 export function About() {
@@ -23,7 +23,7 @@ export function About() {
       >
         <SectionHeader text="About me" />
         <motion.p
-          variants={animationFadeInUp}
+          variants={animationFadeUp}
           className="text-md md:text-lg text-muted-foreground leading-relaxed max-w-2xl"
         >
           My name is Mikhail, and i’m a frontend developer who, over the past three years, has been

@@ -37,3 +37,20 @@ export function useProject(id: number | null) {
     mutate,
   }
 }
+
+export function useFavoriteProjects() {
+  const { data, error, isLoading, mutate } = useSWR<IProjectBlock[]>(
+    '/api/projects/favorites',
+    () => apiHandlers.getFavorites(),
+    {
+      ...swrConfig,
+    },
+  )
+
+  return {
+    projects: data || MOCK_PROJECTS,
+    isLoading,
+    isError: error,
+    mutate,
+  }
+}

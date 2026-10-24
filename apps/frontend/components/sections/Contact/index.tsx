@@ -4,7 +4,7 @@ import { motion } from 'motion/react'
 import { Container } from '@components/layout/Container'
 import { cn } from 'cn'
 import { ArrowUpRight } from 'lucide-react'
-import { DOT_COLOR, fadeUp, socialLinks } from '@lib/utils'
+import { DOT_COLOR, animationFadeUp, socialLinks } from '@lib/utils'
 import { SectionHeader } from '@components/layout/SectionHeader'
 import { DotGridSpotlight } from '@components/ui/dot-grid-spotlight'
 import { useTheme } from 'next-themes'
@@ -32,7 +32,7 @@ export function Contact() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
-        variants={fadeUp}
+        variants={animationFadeUp}
         className="text-lg text-muted-foreground leading-relaxed max-w-2xl mb-12"
       >
         I m always interested in new opportunities, collaborations, and interesting projects.
@@ -49,7 +49,7 @@ export function Contact() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-50px' }}
-            variants={fadeUp}
+            variants={animationFadeUp}
             transition={{ delay: index * 0.1 }}
             className={cn(
               'group relative flex items-center gap-4 p-6 rounded-xl',

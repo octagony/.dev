@@ -10,6 +10,7 @@ export interface IProjectBlock {
   descriptionShort: string;
   image: string;
   link: string;
+  isFavorite: boolean;
 }
 
 export interface IProjectPage extends IProjectBlock {
@@ -28,6 +29,7 @@ export interface CreateProjectInput {
   image: string;
   link: string;
   projectLink?: string;
+  isFavorite?: boolean;
   githubLink: string;
   stack: ITechnology[];
 }

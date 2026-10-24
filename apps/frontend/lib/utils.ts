@@ -1,35 +1,24 @@
-import { GithubIcon } from '@components/ui/Icon/GithubIcon'
-import { IStackBlock } from './interfaces/utility.interface'
-import { LinkedinIcon } from '@components/ui/Icon/LinkedinIcon'
-import { TelegramIcon } from '@components/ui/Icon/TelegramIcon'
-import { MailIcon } from '@components/ui/Icon/MailIcon'
+import { GithubIcon } from '@components/ui/Icon/GithubIcon';
+import { IStackBlock } from './interfaces/utility.interface';
+import { LinkedinIcon } from '@components/ui/Icon/LinkedinIcon';
+import { TelegramIcon } from '@components/ui/Icon/TelegramIcon';
+import { MailIcon } from '@components/ui/Icon/MailIcon';
 
-export { cn } from 'cn'
+export { cn } from 'cn';
 
 //PUBLIC API
-export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL
+export const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL;
 
 //ANIMATION
-export const animationFadeInUp = {
-  hidden: {
-    opacity: 0,
-    y: 24,
-  },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] },
-  } as const,
-}
 
-export const fadeUp = {
+export const animationFadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
   },
-}
+};
 
 // DOT COLORS
 export const DOT_COLOR = {
@@ -41,7 +30,7 @@ export const DOT_COLOR = {
     default: 'rgba(255, 255, 255, 0.06)',
     active: 'rgba(255, 255, 255, 0.12)',
   },
-} as const
+} as const;
 
 // SOCIAL LINKS
 export const socialLinks = [
@@ -69,7 +58,7 @@ export const socialLinks = [
     description: 'Get in touch directly',
     icon: MailIcon,
   },
-]
+];
 
 // STACK
 export const stackBlock: IStackBlock[] = [
@@ -83,6 +72,10 @@ export const stackBlock: IStackBlock[] = [
       {
         title: 'Typescript',
         icon: 'typescript',
+      },
+      {
+        title: 'Rust',
+        icon: 'rust',
       },
     ],
   },
@@ -235,4 +228,4 @@ export const stackBlock: IStackBlock[] = [
       },
     ],
   },
-]
+];
