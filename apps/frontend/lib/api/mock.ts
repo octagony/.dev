@@ -7,6 +7,7 @@ export const MOCK_PROJECTS: IProjectBlock[] = [
     descriptionShort: 'Free temporary email',
     image: '/projects/kitabox.jpg',
     link: '/projects/1',
+    isFavorite: true,
   },
   {
     id: 2,
@@ -14,6 +15,7 @@ export const MOCK_PROJECTS: IProjectBlock[] = [
     descriptionShort: 'Scan files and links for viruses',
     image: '/projects/larius.jpg',
     link: '/projects/2',
+    isFavorite: true,
   },
   {
     id: 3,
@@ -21,6 +23,7 @@ export const MOCK_PROJECTS: IProjectBlock[] = [
     descriptionShort: 'Telegram bot for viewing information about cryptocurrencies',
     image: '/projects/midas_bot.jpg',
     link: '/projects/3',
+    isFavorite: true,
   },
   {
     id: 4,
@@ -28,5 +31,6 @@ export const MOCK_PROJECTS: IProjectBlock[] = [
     descriptionShort: 'Minimal CSS-framework inspired by TailwindCSS',
     image: '/projects/toolscss.png',
     link: '/projects/4',
+    isFavorite: true,
   },
 ]
